@@ -1,35 +1,33 @@
 @import 'src/global-styles/variables';
 
 .notes-container {
+    section {
+        text-align: center;
+        display: flex;
+        align-items: center;
 
-  section {
-    text-align: center;
-    display: flex;
-    align-items: center;
+        #name {
+            width: 15%;
+        }
 
+        #created {
+            width: 15%;
+        }
 
-    #name {
-      width: 15%
+        #category {
+            width: 10%;
+        }
+
+        #content {
+            width: 30%;
+        }
+
+        #dates {
+            width: 15%;
+        }
+
+        #icons {
+            width: 15%;
+        }
     }
-
-    #created {
-      width: 15%
-    }
-
-    #category {
-      width: 10%;
-    }
-
-    #content {
-      width: 30%;
-    }
-
-    #dates {
-      width: 15%
-    }
-
-    #icons {
-      width: 15%
-    }
-  }
 }
