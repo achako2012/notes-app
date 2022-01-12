@@ -8,6 +8,7 @@ import { Note } from '../types';
 
 const initialState = [
     {
+        id: 5681,
         name: 'Alex',
         created: '12.01.2022',
         category: 'Task',
@@ -15,6 +16,7 @@ const initialState = [
         dates: '3/5/2021, 5/6/2020'
     },
     {
+        id: 3626,
         name: 'Alex',
         created: '12.01.2022',
         category: 'Task',
@@ -26,16 +28,28 @@ const initialState = [
 export const NotesList = () => {
     const [note, setNote] = useState<Note[]>(initialState);
 
+    const changeNote = (entity: Note): void => {
+        const newState = note.map((elem) => {
+            if (elem.id === entity.id) {
+                return { ...elem, ...entity };
+            }
+            return elem;
+        });
+        setNote(newState);
+    };
+
     const renderNotes = (arr: any) =>
         arr.map((elem: any) => {
             const id = getRandomDigit();
-            return <NoteView key={id} entity={elem} />;
+            return <NoteView key={id} entity={elem} changeNote={changeNote} />;
         });
 
     const notes = renderNotes(note);
 
     const onAddNote = () => {
+        const id = getRandomDigit();
         const emptyNote = {
+            id,
             name: '',
             created: '',
             category: '',

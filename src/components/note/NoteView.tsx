@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './NoteView.scss';
 import { GrArchive, GrEdit } from 'react-icons/gr';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineDelete, AiOutlineSave } from 'react-icons/ai';
 import { Input } from 'reactstrap';
 import { Note } from '../../types';
 
 interface NoteProps {
     entity: Note;
+
+    changeNote(entity: Note): void;
 }
 
-export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
+export const NoteView: React.FC<NoteProps> = ({ entity, changeNote }: NoteProps) => {
     const [isEditing, setEditing] = useState<boolean>(false);
     const [noteContent, setNoteContent] = useState<Note>();
 
@@ -81,7 +83,11 @@ export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
                 )}
             </div>
             <div id="icons" className="action-buttons">
-                <GrEdit style={{ fontSize: '80%' }} onClick={onEdit} />
+                {isEditing ? (
+                    <AiOutlineSave onClick={() => changeNote(noteContent as Note)} />
+                ) : (
+                    <GrEdit style={{ fontSize: '80%' }} onClick={onEdit} />
+                )}
                 <GrArchive style={{ fontSize: '80%' }} />
                 <AiOutlineDelete />
             </div>
