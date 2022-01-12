@@ -10,21 +10,13 @@ interface NoteProps {
 }
 
 export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
-    const [isEditing, setEditing] = useState(false);
-    const [noteContent, setNoteContent] = useState<Note>({
-        category: '',
-        content: '',
-        created: '',
-        dates: '',
-        name: ''
-    });
+    const [isEditing, setEditing] = useState<boolean>(false);
+    const [noteContent, setNoteContent] = useState<Note>();
 
     useEffect(() => {
-        if (Object.keys(entity).length > 0) {
-            setNoteContent({ ...entity });
-        } else {
-            setEditing(true);
-        }
+        setNoteContent({ ...entity });
+
+        if (Object.values(entity).includes('')) setEditing(true);
     }, [entity]);
 
     const onEdit = () => {
@@ -32,20 +24,21 @@ export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
     };
 
     const changeHandler = (event: { target: { name: string; value: string } }) => {
-        setNoteContent({ ...noteContent, [event.target.name]: event.target.value });
+        if (noteContent)
+            setNoteContent({ ...noteContent, [event.target.name]: event.target.value });
     };
 
     return (
         <section className="note">
             <div id="name">
-                {!isEditing ? (
+                {!isEditing && noteContent ? (
                     <p>{noteContent.name}</p>
                 ) : (
                     <Input type="text" name="name" placeholder="name" onChange={changeHandler} />
                 )}
             </div>
             <div id="created">
-                {!isEditing ? (
+                {!isEditing && noteContent ? (
                     <p>{noteContent.created}</p>
                 ) : (
                     <Input
@@ -57,7 +50,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
                 )}
             </div>
             <div id="category">
-                {!isEditing ? (
+                {!isEditing && noteContent ? (
                     <p>{noteContent.category}</p>
                 ) : (
                     <Input
@@ -69,7 +62,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
                 )}
             </div>
             <div id="content">
-                {!isEditing ? (
+                {!isEditing && noteContent ? (
                     <p>{noteContent.content}</p>
                 ) : (
                     <Input
@@ -81,7 +74,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity }: NoteProps) => {
                 )}
             </div>
             <div id="dates">
-                {!isEditing ? (
+                {!isEditing && noteContent ? (
                     <p>{noteContent.dates}</p>
                 ) : (
                     <Input type="text" name="dates" placeholder="dates" onChange={changeHandler} />
