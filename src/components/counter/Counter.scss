@@ -1,27 +1,26 @@
 @import 'src/global-styles/variables';
 
 .cards-wrapper {
+    display: flex;
+    gap: 40px;
+    margin: 20px auto 15px;
 
-  display: flex;
-  gap: 40px;
-  margin: 20px auto 15px;
+    .card {
+        background-color: $noteBackgroundColor;
+        border-radius: 4px;
+        width: 25%;
 
-  .card {
-    background-color: $noteBackgroundColor;
-    border-radius: 4px;
-    width: 25%;
+        .card-title {
+            font-size: 20px;
+            padding: 10px 10px;
+            text-align: center;
+        }
 
-    .card-title {
-      font-size: 20px;
-      padding: 10px 10px;
-      text-align: center;
+        .card-content {
+            display: flex;
+            font-size: 20px;
+            justify-content: center;
+            gap: 20px;
+        }
     }
-
-    .card-content {
-      display: flex;
-      font-size: 20px;
-      justify-content: center;
-      gap: 20px;
-    }
-  }
 }
