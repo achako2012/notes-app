@@ -5,6 +5,7 @@ import { NoteView } from '../components/note/NoteView';
 import './NotesList.scss';
 import { getRandomDigit } from '../helpers/utils';
 import { Category, Note } from '../types';
+import { Counter } from '../components/counter/Counter';
 
 const initialState = [
     {
@@ -25,11 +26,11 @@ const initialState = [
     }
 ];
 
-export const NotesList = () => {
-    const [note, setNote] = useState<Note[]>(initialState);
+export const NotesPage = () => {
+    const [notes, setNote] = useState<Note[]>(initialState);
 
     const changeNote = (entity: Note): void => {
-        const newState = note.map((elem) => {
+        const newState = notes.map((elem: Note) => {
             if (elem.id === entity.id) {
                 return { ...elem, ...entity };
             }
@@ -39,18 +40,10 @@ export const NotesList = () => {
     };
 
     const deleteNote = (id: number) => {
-        const filteredNotes = note.filter((elem) => elem.id !== id);
+        const filteredNotes = notes.filter((elem: Note) => elem.id !== id);
 
         setNote(filteredNotes);
     };
-
-    const renderNotes = (arr: Note[]) =>
-        arr.map((elem: Note) => {
-            const id = getRandomDigit();
-            return (
-                <NoteView key={id} entity={elem} changeNote={changeNote} deleteNote={deleteNote} />
-            );
-        });
 
     const onAddNote = () => {
         const id = getRandomDigit();
@@ -62,13 +55,22 @@ export const NotesList = () => {
             content: '',
             dates: ''
         };
-        setNote([...note, emptyNote]);
+        setNote([...notes, emptyNote]);
     };
+
+    const renderNotes = (arr: Note[]) =>
+        arr.map((elem: Note) => {
+            const id = getRandomDigit();
+            return (
+                <NoteView key={id} entity={elem} changeNote={changeNote} deleteNote={deleteNote} />
+            );
+        });
 
     return (
         <div className="notes-container">
+            <Counter notesState={notes} />
             <TableCaption />
-            {renderNotes(note)}
+            {renderNotes(notes)}
             <Button color="primary" onClick={onAddNote}>
                 Add a note
             </Button>
@@ -76,4 +78,4 @@ export const NotesList = () => {
     );
 };
 
-export default NotesList;
+export default NotesPage;

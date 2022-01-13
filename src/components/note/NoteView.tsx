@@ -27,6 +27,14 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
         setEditing(!isEditing);
     };
 
+    const changeNoteHandler = () => {
+        if (noteContent) {
+            if (!Object.values(noteContent).includes('')) {
+                changeNote(noteContent);
+            }
+        }
+    };
+
     const changeHandler = (event: { target: { name: string; value: string } }) => {
         if (noteContent)
             setNoteContent({ ...noteContent, [event.target.name]: event.target.value });
@@ -96,8 +104,8 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
         <section className="note">
             {isEditing ? renderInputsView() : renderStaticView()}
             <div id="icons" className="action-buttons">
-                {isEditing && noteContent ? (
-                    <AiOutlineSave onClick={() => changeNote(noteContent)} />
+                {isEditing ? (
+                    <AiOutlineSave onClick={changeNoteHandler} />
                 ) : (
                     <GrEdit style={{ fontSize: '80%' }} onClick={onEdit} />
                 )}

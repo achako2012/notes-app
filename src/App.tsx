@@ -1,9 +1,9 @@
 import React from 'react';
-import { NotesList } from './pages/NotesList';
+import { NotesPage } from './pages/NotesPage';
 
 const App = () => (
     <div className="App">
-        <NotesList />
+        <NotesPage />
     </div>
 );
 
