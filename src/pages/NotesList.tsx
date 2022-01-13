@@ -4,14 +4,14 @@ import { TableCaption } from '../components/table-caption/TableCaption';
 import { NoteView } from '../components/note/NoteView';
 import './NotesList.scss';
 import { getRandomDigit } from '../helpers/utils';
-import { Note } from '../types';
+import { Category, Note } from '../types';
 
 const initialState = [
     {
         id: 5681,
         name: 'Alex',
         created: '12.01.2022',
-        category: 'Task',
+        category: Category.Quote,
         content: 'Lorem Ipsum',
         dates: '3/5/2021, 5/6/2020'
     },
@@ -19,7 +19,7 @@ const initialState = [
         id: 3626,
         name: 'Alex',
         created: '12.01.2022',
-        category: 'Task',
+        category: Category.Task,
         content: 'Lorem Ipsum',
         dates: '3/5/2021, 5/6/2020'
     }
@@ -38,13 +38,19 @@ export const NotesList = () => {
         setNote(newState);
     };
 
-    const renderNotes = (arr: any) =>
-        arr.map((elem: any) => {
-            const id = getRandomDigit();
-            return <NoteView key={id} entity={elem} changeNote={changeNote} />;
-        });
+    const deleteNote = (id: number) => {
+        const filteredNotes = note.filter((elem) => elem.id !== id);
 
-    const notes = renderNotes(note);
+        setNote(filteredNotes);
+    };
+
+    const renderNotes = (arr: Note[]) =>
+        arr.map((elem: Note) => {
+            const id = getRandomDigit();
+            return (
+                <NoteView key={id} entity={elem} changeNote={changeNote} deleteNote={deleteNote} />
+            );
+        });
 
     const onAddNote = () => {
         const id = getRandomDigit();
@@ -52,7 +58,7 @@ export const NotesList = () => {
             id,
             name: '',
             created: '',
-            category: '',
+            category: Category.Idea,
             content: '',
             dates: ''
         };
@@ -62,7 +68,7 @@ export const NotesList = () => {
     return (
         <div className="notes-container">
             <TableCaption />
-            {notes}
+            {renderNotes(note)}
             <Button color="primary" onClick={onAddNote}>
                 Add a note
             </Button>

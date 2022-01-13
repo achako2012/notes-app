@@ -6,3 +6,10 @@ export interface Note {
     content: string;
     dates: string;
 }
+
+export enum Category {
+    Task = 'Task',
+    Idea = 'Idea',
+    Quote = 'Quote',
+    Random = 'Random Thought'
+}
