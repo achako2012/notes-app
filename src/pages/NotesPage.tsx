@@ -13,6 +13,7 @@ const initialState = [
         name: 'Alex',
         created: '12.01.2022',
         category: Category.Quote,
+        status: 'active',
         content: 'Lorem Ipsum',
         dates: '3/5/2021, 5/6/2020'
     },
@@ -21,6 +22,7 @@ const initialState = [
         name: 'Alex',
         created: '12.01.2022',
         category: Category.Task,
+        status: 'active',
         content: 'Lorem Ipsum',
         dates: '3/5/2021, 5/6/2020'
     }
@@ -52,6 +54,7 @@ export const NotesPage = () => {
             name: '',
             created: '',
             category: Category.Idea,
+            status: 'active',
             content: '',
             dates: ''
         };
