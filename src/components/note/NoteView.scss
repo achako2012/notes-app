@@ -1,24 +1,23 @@
 @import 'src/global-styles/variables';
 
 .note {
-  background-color: $noteBackgroundColor;
-  max-height: 50px;
-  box-sizing: border-box;
-  gap: 10px;
+    background-color: $noteBackgroundColor;
+    max-height: 50px;
+    box-sizing: border-box;
+    gap: 10px;
 
-  p {
-    margin: 0 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+    p {
+        margin: 0 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 
-  .action-buttons {
-    display: flex;
-    margin-left: 20px;
-    font-size: 1.9em;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-
+    .action-buttons {
+        display: flex;
+        margin-left: 20px;
+        font-size: 1.9em;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 }
