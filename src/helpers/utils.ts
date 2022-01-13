@@ -1,6 +1,6 @@
 import { CategoryCounter, Note } from '../types';
 
-export const getRandomDigit = () => Math.floor(Math.random() * 101 + 1);
+export const getRandomDigit = () => Math.floor(Math.random() * 9999 + 1);
 
 export const countCategories = (arr: Note[], searchKey: string) => {
     const reducer = (accumulator: CategoryCounter, currentValue: Note) => {

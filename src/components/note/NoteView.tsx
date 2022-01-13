@@ -3,7 +3,7 @@ import './NoteView.scss';
 import { GrArchive, GrEdit } from 'react-icons/gr';
 import { AiOutlineDelete, AiOutlineSave } from 'react-icons/ai';
 import { Input } from 'reactstrap';
-import { Category, Note } from '../../types';
+import { Category, Note, NoteStatus } from '../../types';
 
 interface NoteProps {
     entity: Note;
@@ -32,6 +32,15 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
             if (!Object.values(noteContent).includes('')) {
                 changeNote(noteContent);
             }
+        }
+    };
+
+    const changeNoteStatus = () => {
+        if (noteContent) {
+            const status =
+                noteContent.status === NoteStatus.Active ? NoteStatus.Archived : NoteStatus.Active;
+            setNoteContent({ ...noteContent, status });
+            changeNote({ ...noteContent, status });
         }
     };
 
@@ -109,7 +118,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
                 ) : (
                     <GrEdit style={{ fontSize: '80%' }} onClick={onEdit} />
                 )}
-                <GrArchive style={{ fontSize: '80%' }} />
+                <GrArchive style={{ fontSize: '80%' }} onClick={changeNoteStatus} />
                 <AiOutlineDelete onClick={() => deleteNote(entity.id)} />
             </div>
         </section>

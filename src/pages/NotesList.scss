@@ -1,33 +1,49 @@
 @import 'src/global-styles/variables';
 
 .notes-container {
-    section {
-        text-align: center;
-        display: flex;
-        align-items: center;
 
-        #name {
-            width: 15%;
-        }
+  .control-buttons {
+    display: flex;
+    justify-content: space-between;
 
-        #created {
-            width: 15%;
-        }
-
-        #category {
-            width: 10%;
-        }
-
-        #content {
-            width: 30%;
-        }
-
-        #dates {
-            width: 15%;
-        }
-
-        #icons {
-            width: 15%;
-        }
+    button {
+      margin: 10px 15px;
     }
+  }
+
+  .collapsed-content{
+    p{
+      margin:25px 25px;
+    }
+  }
+
+  section {
+    text-align: center;
+    display: flex;
+    align-items: center;
+
+    #name {
+      width: 15%;
+    }
+
+    #created {
+      width: 15%;
+    }
+
+    #category {
+      width: 10%;
+    }
+
+    #content {
+      width: 30%;
+    }
+
+    #dates {
+      width: 15%;
+    }
+
+    #icons {
+      width: 15%;
+    }
+  }
 }
