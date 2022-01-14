@@ -8,12 +8,16 @@ import { Category, Note, NoteStatus } from '../../types';
 interface NoteProps {
     entity: Note;
 
-    changeNote(entity: Note): void;
+    onChangeNote(entity: Note): any;
 
-    deleteNote(id: number): void;
+    onDeleteNote(entity: Note): any;
 }
 
-export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }: NoteProps) => {
+export const NoteView: React.FC<NoteProps> = ({
+    entity,
+    onChangeNote,
+    onDeleteNote
+}: NoteProps) => {
     const [isEditing, setEditing] = useState<boolean>(false);
     const [noteContent, setNoteContent] = useState<Note>();
 
@@ -30,7 +34,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
     const changeNoteHandler = () => {
         if (noteContent) {
             if (!Object.values(noteContent).includes('')) {
-                changeNote(noteContent);
+                onChangeNote(noteContent);
             }
         }
     };
@@ -40,7 +44,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
             const status =
                 noteContent.status === NoteStatus.Active ? NoteStatus.Archived : NoteStatus.Active;
             setNoteContent({ ...noteContent, status });
-            changeNote({ ...noteContent, status });
+            onChangeNote({ ...noteContent, status });
         }
     };
 
@@ -119,7 +123,7 @@ export const NoteView: React.FC<NoteProps> = ({ entity, changeNote, deleteNote }
                     <GrEdit style={{ fontSize: '80%' }} onClick={onEdit} />
                 )}
                 <GrArchive style={{ fontSize: '80%' }} onClick={changeNoteStatus} />
-                <AiOutlineDelete onClick={() => deleteNote(entity.id)} />
+                <AiOutlineDelete onClick={() => onDeleteNote(entity)} />
             </div>
         </section>
     );
