@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Category, CategoryCounter, Note } from '../../types';
-import { countCategories, getRandomDigit } from '../../helpers/utils';
+import { Category, CategoryCounter, Note } from 'types';
+import { countCategories, getRandomDigit } from 'helpers/utils';
 import './Counter.scss';
 
 interface CounterProps {

@@ -1,18 +1,19 @@
-import { Note } from '../types';
+import { Note } from 'types';
+import { NoteActions } from './types';
 
-export type Action = { type: 'ADD_NOTE' | 'DELETE_NOTE' | 'CHANGE_NOTE'; payload: Note };
+export type Action = { type: NoteActions; payload: Note };
 
 export const addNote = (note: Note): Action => ({
-    type: 'ADD_NOTE',
+    type: NoteActions.ADD_NOTE,
     payload: note
 });
 
 export const deleteNote = (note: Note): Action => ({
-    type: 'DELETE_NOTE',
+    type: NoteActions.DELETE_NOTE,
     payload: note
 });
 
 export const changeNote = (note: Note): Action => ({
-    type: 'CHANGE_NOTE',
+    type: NoteActions.CHANGE_NOTE,
     payload: note
 });

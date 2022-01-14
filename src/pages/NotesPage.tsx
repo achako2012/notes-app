@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { NotesState } from 'redux/rootReducer';
 import { Button, UncontrolledCollapse } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { TableCaption } from '../components/table-caption/TableCaption';
-import { NoteView } from '../components/note/NoteView';
+import { TableCaption } from 'components/table-caption/TableCaption';
+import { NoteView } from 'components/note/NoteView';
 import './NotesList.scss';
-import { getRandomDigit } from '../helpers/utils';
-import { Category, Note, NoteStatus } from '../types';
-import { Counter } from '../components/counter/Counter';
-import { NotesState } from '../redux/rootReducer';
+import { getRandomDigit } from 'helpers/utils';
+import { Category, Note, NoteStatus } from 'types';
+import { Counter } from 'components/counter/Counter';
 
 import { addNote, changeNote, deleteNote } from '../redux/actions';
 
@@ -15,16 +15,13 @@ export const NotesPage = () => {
     const [activeNotes, setActiveNotes] = useState<Note[]>();
     const [archivedNotes, setArchivedNotes] = useState<Note[]>();
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const state = useSelector<NotesState, NotesState['notes']>((state) => state.notes);
+    const notes = useSelector<NotesState, NotesState['notes']>((state) => state.notes);
     const dispatch = useDispatch();
 
-    console.log(state);
-
     useEffect(() => {
-        setActiveNotes(state.filter((elem) => elem.status === NoteStatus.Active));
-        setArchivedNotes(state.filter((elem) => elem.status === NoteStatus.Archived));
-    }, [state]);
+        setActiveNotes(notes.filter((elem) => elem.status === NoteStatus.Active));
+        setArchivedNotes(notes.filter((elem) => elem.status === NoteStatus.Archived));
+    }, [notes]);
 
     const onAddNote = () => {
         const id = getRandomDigit();
@@ -42,7 +39,6 @@ export const NotesPage = () => {
     };
 
     const onChangeNote = (note: Note) => {
-        console.log(note);
         dispatch(changeNote(note));
     };
 
@@ -65,7 +61,7 @@ export const NotesPage = () => {
 
     return (
         <div className="notes-container">
-            <Counter notesState={state} />
+            <Counter notesState={notes} />
             <TableCaption />
             {activeNotes ? renderNotes(activeNotes) : <p>There are not active notes</p>}
             <div className="control-buttons">

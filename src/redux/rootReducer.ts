@@ -1,5 +1,6 @@
 import { Action } from './actions';
 import { Category, Note, NoteStatus } from '../types';
+import { NoteActions } from './types';
 
 export interface NotesState {
     notes: Note[];
@@ -28,17 +29,16 @@ const initialState = {
     ]
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const notesReducer = (state: NotesState = initialState, action: Action) => {
     switch (action.type) {
-        case 'ADD_NOTE': {
+        case NoteActions.ADD_NOTE: {
             return { ...state, notes: [...state.notes, action.payload] };
         }
-        case 'DELETE_NOTE': {
+        case NoteActions.DELETE_NOTE: {
             const filteredNotes = state.notes.filter((elem: Note) => elem.id !== action.payload.id);
             return { ...state, notes: filteredNotes };
         }
-        case 'CHANGE_NOTE': {
+        case NoteActions.CHANGE_NOTE: {
             const newNotes = state.notes.map((elem: Note) => {
                 if (elem.id === action.payload.id) {
                     return { ...state.notes, ...action.payload };

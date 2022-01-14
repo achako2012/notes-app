@@ -3,7 +3,7 @@ import './NoteView.scss';
 import { GrArchive, GrEdit } from 'react-icons/gr';
 import { AiOutlineDelete, AiOutlineSave } from 'react-icons/ai';
 import { Input } from 'reactstrap';
-import { Category, Note, NoteStatus } from '../../types';
+import { Category, Note, NoteStatus } from 'types';
 
 interface NoteProps {
     entity: Note;
