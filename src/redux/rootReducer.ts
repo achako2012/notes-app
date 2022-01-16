@@ -1,5 +1,5 @@
 import { Action } from './actions';
-import { Category, Note, NoteStatus } from '../types';
+import { Note, NoteCategory, NoteStatus } from '../types';
 import { NoteActions } from './types';
 
 export interface NotesState {
@@ -12,7 +12,7 @@ const initialState = {
             id: 5681,
             name: 'Alex',
             created: '12.01.2022',
-            category: Category.Quote,
+            category: NoteCategory.Quote,
             status: NoteStatus.Active,
             content: 'Lorem Ipsum',
             dates: '3/5/2021, 5/6/2020'
@@ -21,7 +21,7 @@ const initialState = {
             id: 3626,
             name: 'Alex',
             created: '12.01.2022',
-            category: Category.Task,
+            category: NoteCategory.Task,
             status: NoteStatus.Active,
             content: 'Lorem Ipsum',
             dates: '3/5/2021, 5/6/2020'

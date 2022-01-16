@@ -2,13 +2,13 @@ export interface Note {
     id: number;
     name: string;
     created: string;
-    category: string;
+    category: NoteCategory;
     status: NoteStatus;
     content: string;
     dates: string;
 }
 
-export enum Category {
+export enum NoteCategory {
     Task = 'Task',
     Idea = 'Idea',
     Quote = 'Quote',
