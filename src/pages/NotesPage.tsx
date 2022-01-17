@@ -6,7 +6,7 @@ import { TableCaption } from 'components/table-caption/TableCaption';
 import { NoteView } from 'components/note/NoteView';
 import './NotesList.scss';
 import { getRandomDigit } from 'helpers/utils';
-import { Category, Note, NoteStatus } from 'types';
+import { Note, NoteCategory, NoteStatus } from 'types';
 import { Counter } from 'components/counter/Counter';
 
 import { addNote, changeNote, deleteNote } from '../redux/actions';
@@ -29,7 +29,7 @@ export const NotesPage = () => {
             id,
             name: '',
             created: '',
-            category: Category.Idea,
+            category: NoteCategory.Idea,
             status: NoteStatus.Active,
             content: '',
             dates: ''

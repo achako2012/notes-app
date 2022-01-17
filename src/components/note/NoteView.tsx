@@ -3,7 +3,7 @@ import './NoteView.scss';
 import { GrArchive, GrEdit } from 'react-icons/gr';
 import { AiOutlineDelete, AiOutlineSave } from 'react-icons/ai';
 import { Input } from 'reactstrap';
-import { Category, Note, NoteStatus } from 'types';
+import { Note, NoteCategory, NoteStatus } from 'types';
 
 interface NoteProps {
     entity: Note;
@@ -88,10 +88,10 @@ export const NoteView: React.FC<NoteProps> = ({
             </div>
             <div id="category">
                 <Input name="category" type="select" onChange={changeHandler}>
-                    <option>{Category.Idea}</option>
-                    <option>{Category.Task}</option>
-                    <option>{Category.Quote}</option>
-                    <option>{Category.Random}</option>
+                    <option>{NoteCategory.Idea}</option>
+                    <option>{NoteCategory.Task}</option>
+                    <option>{NoteCategory.Quote}</option>
+                    <option>{NoteCategory.Random}</option>
                 </Input>
             </div>
             <div id="content">

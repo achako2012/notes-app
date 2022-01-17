@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Category, CategoryCounter, Note } from 'types';
+import { CategoryCounter, Note, NoteCategory } from 'types';
 import { countCategories, getRandomDigit } from 'helpers/utils';
 import './Counter.scss';
 
@@ -17,10 +17,10 @@ export const Counter: React.FC<CounterProps> = ({ notesState }: CounterProps) =>
     useEffect(() => {
         const setUpCounter = () => {
             const arr = [];
-            arr.push({ [Category.Task]: countCategories(notesState, Category.Task) });
-            arr.push({ [Category.Idea]: countCategories(notesState, Category.Idea) });
-            arr.push({ [Category.Quote]: countCategories(notesState, Category.Quote) });
-            arr.push({ [Category.Random]: countCategories(notesState, Category.Random) });
+            arr.push({ [NoteCategory.Task]: countCategories(notesState, NoteCategory.Task) });
+            arr.push({ [NoteCategory.Idea]: countCategories(notesState, NoteCategory.Idea) });
+            arr.push({ [NoteCategory.Quote]: countCategories(notesState, NoteCategory.Quote) });
+            arr.push({ [NoteCategory.Random]: countCategories(notesState, NoteCategory.Random) });
 
             setCounter(arr);
         };

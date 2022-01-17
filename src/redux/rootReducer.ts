@@ -9,7 +9,7 @@ export interface NotesState {
 const initialState = {
     notes: [
         {
-            id: 5681,
+            id: 6346,
             name: 'Alex',
             created: '12.01.2022',
             category: NoteCategory.Quote,
@@ -18,10 +18,64 @@ const initialState = {
             dates: '3/5/2021, 5/6/2020'
         },
         {
-            id: 3626,
+            id: 2874,
+            name: 'Volodya',
+            created: '12.01.2022',
+            category: NoteCategory.Task,
+            status: NoteStatus.Archived,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 2903,
+            name: 'Volodya',
+            created: '12.01.2022',
+            category: NoteCategory.Idea,
+            status: NoteStatus.Active,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 5691,
             name: 'Alex',
             created: '12.01.2022',
             category: NoteCategory.Task,
+            status: NoteStatus.Active,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 3512,
+            name: 'Viktor',
+            created: '12.01.2022',
+            category: NoteCategory.Random,
+            status: NoteStatus.Archived,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 7490,
+            name: 'Marek',
+            created: '12.01.2022',
+            category: NoteCategory.Idea,
+            status: NoteStatus.Active,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 2396,
+            name: 'Alex',
+            created: '12.01.2022',
+            category: NoteCategory.Quote,
+            status: NoteStatus.Active,
+            content: 'Lorem Ipsum',
+            dates: '3/5/2021, 5/6/2020'
+        },
+        {
+            id: 5191,
+            name: 'Marek',
+            created: '12.01.2022',
+            category: NoteCategory.Random,
             status: NoteStatus.Active,
             content: 'Lorem Ipsum',
             dates: '3/5/2021, 5/6/2020'
@@ -38,7 +92,7 @@ export const notesReducer = (state: NotesState = initialState, action: Action) =
             const filteredNotes = state.notes.filter((elem: Note) => elem.id !== action.payload.id);
             return { ...state, notes: filteredNotes };
         }
-        case NoteActions.CHANGE_NOTE: {
+        case NoteActions.EDITE_NOTE: {
             const newNotes = state.notes.map((elem: Note) => {
                 if (elem.id === action.payload.id) {
                     return { ...state.notes, ...action.payload };

@@ -14,6 +14,6 @@ export const deleteNote = (note: Note): Action => ({
 });
 
 export const changeNote = (note: Note): Action => ({
-    type: NoteActions.CHANGE_NOTE,
+    type: NoteActions.EDITE_NOTE,
     payload: note
 });
